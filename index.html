@@ -16,15 +16,19 @@
     <div class="max-w-lg w-full mx-auto p-6">
         <div class="card rounded-3xl p-8">
 
+            <!-- DEMO VIDEO -->
             <video controls autoplay muted loop playsinline>
                 <source src="demo.mp4" type="video/mp4">
+                Your browser does not support the video.
             </video>
 
+            <!-- WARNING -->
             <div class="bg-red-100 border border-red-400 text-red-700 text-center py-4 rounded-2xl mt-6 mb-8 font-bold text-lg">
                 ⚠️ DOES NOT WORK ON SCHOOL ISSUED CHROMEBOOKS<br>
                 Will work in background • Simulates human behavior • Is NOT instant
             </div>
 
+            <!-- PAYMENT HEADER -->
             <div class="bg-green-100 text-green-800 text-center py-4 rounded-2xl mb-8 font-semibold flex items-center justify-center gap-2">
                 <i class="fas fa-dollar-sign"></i>
                 Pay $10 via Cash App first
@@ -34,8 +38,10 @@
                 <div class="inline-flex items-center gap-3 text-4xl mb-4">
                     💰 <span class="font-bold text-3xl tracking-tight">MoneySkill Bot</span>
                 </div>
+                <p class="text-gray-500">Watch the demo • Pay • Get your bot instantly</p>
             </div>
 
+            <!-- INSTRUCTIONS -->
             <div class="bg-gray-50 p-6 rounded-2xl mb-8 text-left text-sm">
                 <h3 class="font-bold mb-3">✅ How to get your bot:</h3>
                 <ol class="list-decimal list-inside space-y-2">
@@ -44,7 +50,7 @@
                     <li>Come back here</li>
                     <li>Fill in username + password + Cash App note</li>
                     <li>Click the big green button</li>
-                    <li>Download, unzip, double-click <strong>MoneySkillBot.exe</strong></li>
+                    <li>Download the ZIP, unzip it, and double-click <strong>MoneySkillBot.exe</strong></li>
                 </ol>
             </div>
 
@@ -92,7 +98,7 @@
             resultDiv.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-spinner fa-spin"></i><strong>Preparing your bot... (10-20 seconds)</strong></div>`;
 
             try {
-                const exeResponse = await fetch('https://github.com/MoneySkillBot/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe');
+                const exeResponse = await fetch('https://github.com/MoneySkillKiller/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe');
                 const exeBlob = await exeResponse.blob();
 
                 const config = {
@@ -105,7 +111,7 @@
                 const zip = new JSZip();
                 zip.file("MoneySkillBot.exe", exeBlob);
                 zip.file("config.lic", JSON.stringify(config, null, 2));
-                zip.file("README.txt", "Just double-click MoneySkillBot.exe\nYour bot is locked to this computer.");
+                zip.file("README.txt", "✅ Just double-click MoneySkillBot.exe\n\nYour bot is locked to this computer only.");
 
                 const zipBlob = await zip.generateAsync({ type: "blob" });
                 const url = URL.createObjectURL(zipBlob);
@@ -116,9 +122,9 @@
                 a.click();
                 URL.revokeObjectURL(url);
 
-                resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Download started!</strong><p class="mt-2">Unzip and double-click MoneySkillBot.exe</p></div>`;
+                resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Your bot is downloading!</strong><p class="mt-2">Unzip and double-click MoneySkillBot.exe</p></div>`;
             } catch (err) {
-                resultDiv.innerHTML = `<span class="text-red-600">❌ Still can't find the .exe. Make sure it's attached to v1.0 release.</span>`;
+                resultDiv.innerHTML = `<span class="text-red-600">❌ Error downloading .exe. Please refresh and try again.</span>`;
             }
         }
     </script>
