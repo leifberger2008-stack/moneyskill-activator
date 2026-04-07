@@ -16,19 +16,15 @@
     <div class="max-w-lg w-full mx-auto p-6">
         <div class="card rounded-3xl p-8">
 
-            <!-- DEMO VIDEO -->
             <video controls autoplay muted loop playsinline>
                 <source src="demo.mp4" type="video/mp4">
-                Your browser does not support the video.
             </video>
 
-            <!-- WARNING -->
             <div class="bg-red-100 border border-red-400 text-red-700 text-center py-4 rounded-2xl mt-6 mb-8 font-bold text-lg">
                 ⚠️ DOES NOT WORK ON SCHOOL ISSUED CHROMEBOOKS<br>
                 Will work in background • Simulates human behavior • Is NOT instant
             </div>
 
-            <!-- PAYMENT HEADER -->
             <div class="bg-green-100 text-green-800 text-center py-4 rounded-2xl mb-8 font-semibold flex items-center justify-center gap-2">
                 <i class="fas fa-dollar-sign"></i>
                 Pay $10 via Cash App first
@@ -38,7 +34,6 @@
                 <div class="inline-flex items-center gap-3 text-4xl mb-4">
                     💰 <span class="font-bold text-3xl tracking-tight">MoneySkill Bot</span>
                 </div>
-                <p class="text-gray-500">Watch the demo • Pay • Get your bot instantly</p>
             </div>
 
             <div class="bg-gray-50 p-6 rounded-2xl mb-8 text-left text-sm">
@@ -123,7 +118,7 @@
 
                 resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Your bot is downloading!</strong><p class="mt-2">Unzip and double-click MoneySkillBot.exe</p></div>`;
             } catch (err) {
-                resultDiv.innerHTML = `<span class="text-red-600">❌ Error: Please hard refresh the page (Ctrl + Shift + R) and try again.</span>`;
+                resultDiv.innerHTML = `<span class="text-red-600">❌ Could not download .exe. Hard refresh (Ctrl+Shift+R) and try again.</span>`;
             }
         }
     </script>
