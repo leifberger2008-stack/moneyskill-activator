@@ -22,12 +22,12 @@
 
             <div class="bg-red-100 border border-red-400 text-red-700 text-center py-4 rounded-2xl mt-6 mb-8 font-bold text-lg">
                 ⚠️ DOES NOT WORK ON SCHOOL ISSUED CHROMEBOOKS<br>
-                Will work in background • Simulates human behavior • Is NOT instant
+                Runs in background • Simulates human behavior • Not instant
             </div>
 
             <div class="bg-green-100 text-green-800 text-center py-4 rounded-2xl mb-8 font-semibold flex items-center justify-center gap-2">
                 <i class="fas fa-dollar-sign"></i>
-                Pay $10 via Cash App first
+                Pay $10 via Cash App first → $cacabazuzu
             </div>
 
             <div class="text-center mb-8">
@@ -37,37 +37,27 @@
             </div>
 
             <div class="bg-gray-50 p-6 rounded-2xl mb-8 text-left text-sm">
-                <h3 class="font-bold mb-3">✅ How to get your bot:</h3>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>Send <strong>$10</strong> on Cash App to <strong>$cacabazuzu</strong></li>
-                    <li>Put your MoneySKILL username in the note</li>
-                    <li>Come back here</li>
-                    <li>Fill in username + password + Cash App note</li>
-                    <li>Click the big green button</li>
-                    <li>Download the ZIP, unzip it, and double-click <strong>MoneySkillBot.exe</strong></li>
+                <h3 class="font-bold mb-4">✅ How to use after downloading:</h3>
+                <ol class="list-decimal list-inside space-y-3">
+                    <li>Download the main program using the blue button</li>
+                    <li>Click the green button to get your personalized config</li>
+                    <li>Unzip the config file</li>
+                    <li>Put <strong>MoneySkillBot.exe</strong> and <strong>config.lic</strong> in the **same folder**</li>
+                    <li>Double-click <strong>MoneySkillBot.exe</strong> to start</li>
                 </ol>
             </div>
 
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">MoneySKILL Username</label>
-                    <input type="text" id="username" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl" placeholder="s1234567" required>
-                </div>
+            <div class="space-y-4">
+                <button onclick="downloadExe()" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg">
+                    <i class="fas fa-download"></i>
+                    1. Download Main Program (MoneySkillBot.exe)
+                </button>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">MoneySKILL Password</label>
-                    <input type="password" id="password" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl" placeholder="School26" required>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Cash App Transaction ID or Note</label>
-                    <input type="text" id="proof" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl" placeholder="Paste your Cash App note here" required>
-                </div>
-
-                <button onclick="checkPaymentAndGenerate()" 
+                <button onclick="generateConfigZip()" 
                         class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-xl py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg">
                     <i class="fas fa-download"></i>
-                    CONFIRM PAYMENT &amp; DOWNLOAD BOT
+                    2. Get My Personalized Config
                 </button>
             </div>
 
@@ -77,49 +67,45 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script>
-        async function checkPaymentAndGenerate() {
+        function downloadExe() {
+            window.open('https://github.com/MoneySkillKiller/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe', '_blank');
+        }
+
+        async function generateConfigZip() {
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
             const proof = document.getElementById('proof').value.trim();
 
             if (!username || !password || !proof) {
-                alert("Please fill in ALL fields");
+                alert("Please fill in ALL fields first");
                 return;
             }
 
             const resultDiv = document.getElementById('result');
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-spinner fa-spin"></i><strong>Preparing your bot... (10-20 seconds)</strong></div>`;
+            resultDiv.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-spinner fa-spin"></i><strong>Creating your personalized config...</strong></div>`;
 
-            try {
-                const exeResponse = await fetch('https://github.com/MoneySkillKiller/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe');
-                const exeBlob = await exeResponse.blob();
+            const config = {
+                username: username,
+                password: password,
+                deepseek_key: "sk-9c74f97a7ed84ba5a0c08774c15bfab6",
+                machine_fingerprint: "CLIENT_LOCK"
+            };
 
-                const config = {
-                    username: username,
-                    password: password,
-                    deepseek_key: "sk-9c74f97a7ed84ba5a0c08774c15bfab6",
-                    machine_fingerprint: "CLIENT_LOCK"
-                };
+            const zip = new JSZip();
+            zip.file("config.lic", JSON.stringify(config, null, 2));
+            zip.file("README.txt", "✅ Put this file in the same folder as MoneySkillBot.exe\nThen double-click MoneySkillBot.exe to start.\n\nYour bot is locked to this computer only.");
 
-                const zip = new JSZip();
-                zip.file("MoneySkillBot.exe", exeBlob);
-                zip.file("config.lic", JSON.stringify(config, null, 2));
-                zip.file("README.txt", "✅ Just double-click MoneySkillBot.exe\n\nYour bot is locked to this computer only.");
+            const zipBlob = await zip.generateAsync({ type: "blob" });
+            const url = URL.createObjectURL(zipBlob);
 
-                const zipBlob = await zip.generateAsync({ type: "blob" });
-                const url = URL.createObjectURL(zipBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "My_MoneySkillBot_Config.zip";
+            a.click();
+            URL.revokeObjectURL(url);
 
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = "My_MoneySkillBot.zip";
-                a.click();
-                URL.revokeObjectURL(url);
-
-                resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Your bot is downloading!</strong><p class="mt-2">Unzip and double-click MoneySkillBot.exe</p></div>`;
-            } catch (err) {
-                resultDiv.innerHTML = `<span class="text-red-600">❌ Could not download .exe. Hard refresh (Ctrl+Shift+R) and try again.</span>`;
-            }
+            resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Config downloaded!</strong><p class="mt-3">Now click the blue button above to download the main program.</p></div>`;
         }
     </script>
 </body>
