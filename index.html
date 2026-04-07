@@ -28,62 +28,60 @@
                 <p class="text-gray-500">After payment, get your personal bot instantly</p>
             </div>
 
-            <div class="space-y-6">
-                <div class="bg-gray-50 p-5 rounded-2xl text-center">
-                    <p class="font-medium text-sm mb-2">Send payment to:</p>
-                    <p class="text-2xl font-bold text-green-600">$cacabazuzu</p>
-                    <p class="text-xs text-gray-500 mt-1">Include your MoneySKILL username in the note</p>
-                </div>
+            <div class="bg-gray-50 p-5 rounded-2xl mb-6">
+                <p class="font-medium text-sm mb-2">Send payment to:</p>
+                <p class="text-3xl font-bold text-green-600">$cacabazuzu</p>
+                <p class="text-xs text-gray-500 mt-1">Include your MoneySKILL username in the note</p>
+            </div>
 
+            <div class="space-y-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">MoneySKILL Username</label>
-                    <input type="text" id="username" 
-                           class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
-                           placeholder="s1234567" required>
+                    <input type="text" id="username" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl" placeholder="s1234567" required>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">MoneySKILL Password</label>
-                    <input type="password" id="password" 
-                           class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
-                           placeholder="School26" required>
+                    <input type="password" id="password" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl" placeholder="School26" required>
                 </div>
 
-                <button onclick="generatePersonalizedZip()"
+                <!-- PAYMENT PROOF STEP -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Cash App Transaction ID or Note</label>
+                    <input type="text" id="proof" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-2xl" placeholder="Type the transaction ID or the note you sent" required>
+                    <p class="text-xs text-gray-500 mt-1">This proves you paid • We can check it</p>
+                </div>
+
+                <button onclick="checkPaymentAndGenerate()"
                         class="w-full bg-green-600 hover:bg-green-700 transition-all text-white font-semibold text-xl py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg">
                     <i class="fas fa-download"></i>
-                    DOWNLOAD MY PERSONALIZED BOT
+                    CONFIRM PAYMENT & DOWNLOAD BOT
                 </button>
             </div>
 
             <div id="result" class="hidden mt-6 p-6 bg-green-50 border border-green-200 rounded-2xl text-green-800"></div>
 
             <div class="text-center text-xs text-gray-400 mt-8">
-                🔒 Bot locked to your computer only • Cannot be shared<br>
-                One-time payment • Instant delivery
+                🔒 Your bot is locked to your computer only • Cannot be shared
             </div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script>
-        async function generatePersonalizedZip() {
+        async function checkPaymentAndGenerate() {
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
+            const proof = document.getElementById('proof').value.trim();
 
-            if (!username || !password) {
-                alert("Please fill in both username and password");
+            if (!username || !password || !proof) {
+                alert("Please fill in username, password, AND your Cash App transaction ID");
                 return;
             }
 
             const resultDiv = document.getElementById('result');
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <strong>Preparing your personal bot... (10-20 seconds)</strong>
-                </div>
-            `;
+            resultDiv.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-spinner fa-spin"></i><strong>Preparing your personal bot...</strong></div>`;
 
             try {
                 const exeResponse = await fetch('https://github.com/leifberger2008-stack/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe');
@@ -114,13 +112,12 @@
                     <div class="text-center">
                         <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
                         <strong class="text-2xl block">✅ Your bot is downloading!</strong>
-                        <p class="mt-2">Unzip the file and double-click <span class="font-mono font-bold">MoneySkillBot.exe</span></p>
-                        <p class="text-sm mt-4 text-green-600">Locked to your computer • Cannot be shared</p>
+                        <p class="mt-2">Unzip and double-click <span class="font-mono font-bold">MoneySkillBot.exe</span></p>
                     </div>
                 `;
 
             } catch (err) {
-                resultDiv.innerHTML = `<span class="text-red-600">❌ Error: Make sure MoneySkillBot.exe is in the v1.0 release.</span>`;
+                resultDiv.innerHTML = `<span class="text-red-600">❌ Error: Make sure the .exe is in the v1.0 release.</span>`;
             }
         }
     </script>
