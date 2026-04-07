@@ -35,20 +35,19 @@
                 </div>
             </div>
 
-            <!-- DETAILED START / STOP / RESTART INSTRUCTIONS -->
+            <!-- DETAILED START / STOP INSTRUCTIONS -->
             <div class="bg-blue-50 p-6 rounded-2xl mb-8 text-left text-sm">
-                <h3 class="font-bold text-blue-800 mb-4">📋 How to Start, Stop, and Restart the Bot</h3>
+                <h3 class="font-bold text-blue-800 mb-4">📋 How to Start, Stop & Restart the Bot</h3>
                 <ol class="list-decimal list-inside space-y-3 text-blue-900">
-                    <li><strong>Start the bot:</strong> Double-click <code>MoneySkillBot.exe</code></li>
-                    <li>The browser will open and automatically log in</li>
-                    <li><strong>Stop the bot:</strong> Simply close the MoneySkill browser window</li>
-                    <li>OR press Ctrl + C in the black Command Prompt window</li>
-                    <li><strong>Restart the bot:</strong> Just double-click <code>MoneySkillBot.exe</code> again</li>
+                    <li><strong>Start:</strong> Double-click <code>MoneySkillBot.exe</code></li>
+                    <li>The browser will open and log in automatically</li>
+                    <li><strong>Stop:</strong> Simply close the MoneySkill browser window</li>
+                    <li><strong>Restart:</strong> Double-click <code>MoneySkillBot.exe</code> again</li>
                 </ol>
-                <p class="text-xs text-blue-700 mt-4">💡 Tip: Create a folder on your desktop, put both files inside it, then run the .exe</p>
+                <p class="text-xs bg-white p-3 rounded-xl mt-4">💡 Tip: Put both files in a new folder on your desktop before running</p>
             </div>
 
-            <!-- Input fields and buttons -->
+            <!-- INPUT FIELDS -->
             <div class="space-y-5 mb-8">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">MoneySKILL Username</label>
@@ -66,6 +65,7 @@
                 </div>
             </div>
 
+            <!-- BUTTONS -->
             <div class="space-y-4">
                 <button onclick="downloadExe()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg">
                     <i class="fas fa-download"></i>
@@ -79,6 +79,10 @@
             </div>
 
             <div id="result" class="hidden mt-6 p-6 bg-green-50 border border-green-200 rounded-2xl text-green-800"></div>
+
+            <div class="text-center text-xs text-gray-400 mt-8">
+                🔒 Bot is locked to your computer only • Cannot be shared
+            </div>
         </div>
     </div>
 
@@ -100,23 +104,29 @@
 
             const resultDiv = document.getElementById('result');
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-spinner fa-spin"></i><strong>Creating your personalized config...</strong></div>`;
+            resultDiv.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-spinner fa-spin"></i><strong>Creating your config...</strong></div>`;
 
-            const config = { username, password, deepseek_key: "sk-9c74f97a7ed84ba5a0c08774c15bfab6", machine_fingerprint: "CLIENT_LOCK" };
+            const config = {
+                username: username,
+                password: password,
+                deepseek_key: "sk-9c74f97a7ed84ba5a0c08774c15bfab6",
+                machine_fingerprint: "CLIENT_LOCK"
+            };
 
             const zip = new JSZip();
             zip.file("config.lic", JSON.stringify(config, null, 2));
-            zip.file("README.txt", "✅ Put this file in the same folder as MoneySkillBot.exe\nDouble-click MoneySkillBot.exe to start.\nClose the browser window to stop the bot.");
+            zip.file("README.txt", "✅ Instructions:\n1. Put this file in the same folder as MoneySkillBot.exe\n2. Double-click MoneySkillBot.exe to start\n3. Close the browser window to stop the bot");
 
             const zipBlob = await zip.generateAsync({ type: "blob" });
             const url = URL.createObjectURL(zipBlob);
+
             const a = document.createElement('a');
             a.href = url;
             a.download = "My_MoneySkillBot_Config.zip";
             a.click();
             URL.revokeObjectURL(url);
 
-            resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Config downloaded!</strong><p class="mt-3">Now click the blue button above to get the main program.</p></div>`;
+            resultDiv.innerHTML = `<div class="text-center"><i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i><strong class="text-2xl block">✅ Config downloaded!</strong><p class="mt-3">Now click the blue button to download the main program.</p></div>`;
         }
     </script>
 </body>
