@@ -14,14 +14,27 @@
 <body class="min-h-screen flex items-center justify-center text-gray-800">
     <div class="max-w-lg w-full mx-auto p-6">
         <div class="card rounded-3xl p-8">
+            
+            <!-- PAYMENT HEADER -->
+            <div class="bg-green-100 text-green-800 text-center py-4 rounded-2xl mb-8 font-semibold flex items-center justify-center gap-2">
+                <i class="fas fa-dollar-sign"></i>
+                Pay $25 via Cash App first
+            </div>
+
             <div class="text-center mb-8">
                 <div class="inline-flex items-center gap-3 text-4xl mb-4">
                     💰 <span class="font-bold text-3xl tracking-tight">MoneySkill Bot</span>
                 </div>
-                <p class="text-gray-500">Get your personal bot in 10 seconds</p>
+                <p class="text-gray-500">After payment, get your personal bot instantly</p>
             </div>
 
             <div class="space-y-6">
+                <div class="bg-gray-50 p-5 rounded-2xl text-center">
+                    <p class="font-medium text-sm mb-2">Send payment to:</p>
+                    <p class="text-2xl font-bold text-green-600">$YourCashAppTag</p>
+                    <p class="text-xs text-gray-500 mt-1">Include your MoneySKILL username in the note</p>
+                </div>
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">MoneySKILL Username</label>
                     <input type="text" id="username" 
@@ -46,8 +59,8 @@
             <div id="result" class="hidden mt-6 p-6 bg-green-50 border border-green-200 rounded-2xl text-green-800"></div>
 
             <div class="text-center text-xs text-gray-400 mt-8">
-                🔒 Your bot is locked to your computer only<br>
-                After payment via Cash App • One-click ready
+                🔒 Bot locked to your computer only • Cannot be shared<br>
+                One-time payment • Instant delivery
             </div>
         </div>
     </div>
@@ -107,7 +120,7 @@
                 `;
 
             } catch (err) {
-                resultDiv.innerHTML = `<span class="text-red-600">❌ Error: Make sure MoneySkillBot.exe is uploaded to the v1.0 release.</span>`;
+                resultDiv.innerHTML = `<span class="text-red-600">❌ Error: Make sure MoneySkillBot.exe is in the v1.0 release.</span>`;
             }
         }
     </script>
