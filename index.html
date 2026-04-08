@@ -7,131 +7,93 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <style>
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); }
-    .neon-green { text-shadow: 0 0 15px #22c55e; }
-  </style>
 </head>
-<body class="bg-gradient-to-br from-gray-950 via-black to-gray-950 text-white min-h-screen">
-  <div class="max-w-5xl mx-auto p-8">
+<body class="bg-gray-950 text-white min-h-screen">
+  <div class="max-w-4xl mx-auto p-8">
 
-    <div class="flex justify-between items-center mb-8">
-      <div class="flex items-center gap-3">
-        <i class="fas fa-robot text-4xl text-green-500"></i>
-        <h1 class="text-5xl font-bold neon-green">MoneySkillBot</h1>
-      </div>
-      <div class="bg-gray-800 text-green-400 text-sm px-5 py-2 rounded-3xl flex items-center gap-2 border border-green-500/30">
-        <i class="fas fa-graduation-cap"></i>
-        Made by a student
-      </div>
+    <div class="text-center mb-8">
+      <h1 class="text-5xl font-bold text-green-400">MoneySkillBot</h1>
+      <p class="text-xl mt-2">Made by a student</p>
     </div>
 
-    <div class="mb-10 rounded-3xl overflow-hidden shadow-2xl border border-green-500/20">
-      <video controls autoplay muted loop playsinline class="w-full">
-        <source src="demo.mp4" type="video/mp4">
-      </video>
+    <div class="bg-red-600 p-6 rounded-2xl mb-8 text-center">
+      <p class="text-xl">DOES NOT WORK ON SCHOOL ISSUED CHROMEBOOK<br>WILL WORK IN BACKGROUND — IS NOT INSTANT</p>
     </div>
 
-    <div class="bg-red-600/90 text-white p-6 rounded-3xl mb-8 text-center">
-      <h2 class="text-3xl font-bold">⚠️ IMPORTANT</h2>
-      <p class="mt-3 text-xl">DOES NOT WORK ON SCHOOL ISSUED CHROMEBOOK<br>WILL WORK IN BACKGROUND TO SIMULATE HUMAN BEHAVIOR — IS NOT INSTANT</p>
+    <div class="bg-green-600 p-8 rounded-3xl mb-10 text-center">
+      <h2 class="text-4xl font-bold">$10 via Cash App $cacabazuzu</h2>
+      <p class="mt-4">Include your MoneySkill username in the note</p>
     </div>
 
-    <div class="bg-gradient-to-r from-green-500 to-emerald-600 p-10 rounded-3xl mb-10 text-center shadow-xl">
-      <h1 class="text-5xl font-bold mb-2">MoneySkillBot — $10</h1>
-      <p class="text-3xl">Pay <span class="font-mono bg-black/40 px-6 py-2 rounded-2xl">$cacabazuzu</span> on Cash App</p>
-      <p class="mt-4 text-xl opacity-90">Include your MoneySkill username in the note</p>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-10">
-      <div class="space-y-8">
-        <h2 class="text-3xl font-semibold flex items-center gap-3">
-          <i class="fas fa-info-circle text-green-400"></i> How It Works
-        </h2>
-        <div class="space-y-8">
-          <div class="flex gap-5"><div class="w-10 h-10 bg-green-500 rounded-2xl flex items-center justify-center text-2xl font-bold">1</div><div>Pay $10 to $cacabazuzu on Cash App</div></div>
-          <div class="flex gap-5"><div class="w-10 h-10 bg-green-500 rounded-2xl flex items-center justify-center text-2xl font-bold">2</div><div>Enter your details below</div></div>
-          <div class="flex gap-5"><div class="w-10 h-10 bg-green-500 rounded-2xl flex items-center justify-center text-2xl font-bold">3</div><div>Download the bot + config</div></div>
-        </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-2xl font-semibold mb-6">How to use:</h3>
+        <ol class="space-y-4 text-lg">
+          <li>1. Pay $10 to $cacabazuzu</li>
+          <li>2. Fill the form below</li>
+          <li>3. Download both files</li>
+        </ol>
       </div>
 
-      <div class="glass p-8 rounded-3xl border border-green-500/30">
-        <div class="space-y-8">
+      <div class="bg-gray-900 p-8 rounded-3xl">
+        <div class="space-y-6">
           <div>
-            <label class="block text-sm mb-2 font-medium">MoneySkill Username</label>
-            <input id="username" type="text" placeholder="s1234567" class="w-full bg-gray-900 border border-gray-700 rounded-2xl px-6 py-5 text-lg focus:outline-none focus:border-green-500">
+            <label class="block mb-2">MoneySkill Username</label>
+            <input id="username" type="text" placeholder="s1234567" class="w-full p-4 bg-gray-800 rounded-xl border border-gray-700 focus:border-green-500 outline-none">
           </div>
           <div>
-            <label class="block text-sm mb-2 font-medium">MoneySkill Password</label>
-            <input id="password" type="password" class="w-full bg-gray-900 border border-gray-700 rounded-2xl px-6 py-5 text-lg focus:outline-none focus:border-green-500">
+            <label class="block mb-2">MoneySkill Password</label>
+            <input id="password" type="password" class="w-full p-4 bg-gray-800 rounded-xl border border-gray-700 focus:border-green-500 outline-none">
           </div>
           <div>
-            <label class="block text-sm mb-2 font-medium">Cash App Payment Proof (transaction ID or note)</label>
-            <input id="proof" type="text" class="w-full bg-gray-900 border border-gray-700 rounded-2xl px-6 py-5 text-lg focus:outline-none focus:border-green-500">
+            <label class="block mb-2">Cash App Payment Proof</label>
+            <input id="proof" type="text" class="w-full p-4 bg-gray-800 rounded-xl border border-gray-700 focus:border-green-500 outline-none">
           </div>
 
-          <button onclick="checkPaymentAndGenerate()" 
-                  class="w-full bg-green-500 hover:bg-green-400 transition-all py-6 rounded-3xl text-2xl font-bold flex items-center justify-center gap-4">
-            <i class="fas fa-download"></i>
-            CONFIRM PAYMENT & GET MY BOT
+          <button onclick="generateConfig()" 
+                  class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl text-xl font-bold">
+            Download Personalized Config + Instructions
           </button>
         </div>
       </div>
     </div>
 
-    <div class="mt-12 grid grid-cols-2 gap-6">
-      <button onclick="downloadExe()" class="bg-blue-600 hover:bg-blue-500 transition-all py-7 rounded-3xl text-2xl font-bold flex items-center justify-center gap-4">
-        <i class="fas fa-download"></i> 1. Download Main Program (MoneySkillBot.exe)
-      </button>
-      <button onclick="generateConfigZip()" class="bg-green-600 hover:bg-green-500 transition-all py-7 rounded-3xl text-2xl font-bold flex items-center justify-center gap-4">
-        <i class="fas fa-file-zipper"></i> 2. Get My Personalized Config
+    <div class="mt-12 text-center">
+      <button onclick="downloadExe()" 
+              class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-2xl text-xl font-bold inline-flex items-center gap-3">
+        <i class="fas fa-download"></i> Download MoneySkillBot.exe
       </button>
     </div>
 
-    <!-- Windows warning -->
-    <div class="mt-12 bg-yellow-500/10 border border-yellow-500/30 p-8 rounded-3xl">
-      <h3 class="text-xl font-bold text-yellow-400 mb-4">⚠️ Windows says “MoneySkillBot.exe isn’t commonly downloaded”?</h3>
-      <ol class="list-decimal list-inside space-y-3 text-lg">
-        <li>Click <strong>“Keep”</strong> or <strong>“More info”</strong></li>
-        <li>Right-click the file → Properties</li>
-        <li>Check the box <strong>“Unblock”</strong> at the bottom</li>
-        <li>Click Apply → OK</li>
-        <li>Now double-click the .exe</li>
+    <div class="mt-16 bg-gray-900 p-8 rounded-3xl">
+      <h3 class="text-2xl font-bold mb-6">After downloading both files:</h3>
+      <ol class="list-decimal list-inside space-y-6 text-lg">
+        <li>Create a folder on your desktop called <span class="font-mono bg-gray-800 px-2 py-1 rounded">MoneySkillBot</span></li>
+        <li>Put both files (MoneySkillBot.exe and config.lic) in that folder</li>
+        <li>Double-click <span class="font-mono bg-gray-800 px-2 py-1 rounded">MoneySkillBot.exe</span> to start</li>
+        <li>To stop: Close the browser window, or use Task Manager (Ctrl+Shift+Esc) → End Task on MoneySkillBot.exe</li>
       </ol>
     </div>
 
-    <!-- Full instructions -->
-    <div class="mt-16 bg-gray-900 border border-gray-700 p-8 rounded-3xl">
-      <h2 class="text-3xl font-bold mb-8">After Downloading Both Files (Very Important):</h2>
-      <ol class="space-y-8 text-lg">
-        <li><strong>1.</strong> Create a new folder on your desktop called <span class="font-mono bg-gray-800 px-3 py-1 rounded">MoneySkillBot</span></li>
-        <li><strong>2.</strong> Move **both** files into that folder</li>
-        <li><strong>3.</strong> Extract the Config ZIP and make sure the <strong>config.lic</strong> file is in the same folder as MoneySkillBot.exe (replace the old one if it exists)</li>
-        <li><strong>4.</strong> Double-click <span class="font-mono bg-gray-800 px-3 py-1 rounded">MoneySkillBot.exe</span> to launch</li>
-        <li><strong>5. To stop the bot:</strong><br>
-            • First close the MoneySkill browser window<br>
-            • If it reopens, press <strong>Ctrl + Shift + Esc</strong> → Task Manager → find <strong>MoneySkillBot.exe</strong> → Right-click → <strong>End Task</strong></li>
-      </ol>
-    </div>
   </div>
 
   <script>
-    async function downloadExe() {
+    function downloadExe() {
       window.open("https://github.com/MoneySkillKiller/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe", "_blank");
     }
 
-    async function generateConfigZip() {
+    function generateConfig() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
       const proof = document.getElementById("proof").value.trim();
 
       if (!username || !password || !proof) {
-        alert("❌ Please fill in ALL fields including payment proof!");
+        alert("Please fill in Username, Password, and Payment Proof");
         return;
       }
 
-      // Show confirmation so you can see it's using the right credentials
-      if (!confirm(`✅ Creating config for:\n\nUsername: ${username}\nPassword: ${password}\n\nIs this correct?`)) {
+      // Show exactly what will be saved
+      if (!confirm(`Creating config for:\n\nUsername: ${username}\nPassword: ${password}\n\nClick OK to download`)) {
         return;
       }
 
@@ -143,17 +105,14 @@
 
       const zip = new JSZip();
       zip.file("config.lic", JSON.stringify(config, null, 2));
-      zip.file("README.txt", "To stop the bot:\n1. Close the MoneySkill browser window\n2. If it reopens, use Task Manager (Ctrl+Shift+Esc) → End Task on MoneySkillBot.exe");
+      zip.file("README.txt", "To stop the bot:\n- Close the browser window\n- Or use Task Manager (Ctrl+Shift+Esc) → End Task on MoneySkillBot.exe");
 
-      const content = await zip.generateAsync({type:"blob"});
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(content);
-      link.download = "My_MoneySkillBot_Config.zip";
-      link.click();
-    }
-
-    function checkPaymentAndGenerate() {
-      generateConfigZip();
+      zip.generateAsync({type:"blob"}).then(content => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(content);
+        link.download = "My_MoneySkillBot_Config.zip";
+        link.click();
+      });
     }
   </script>
 </body>
