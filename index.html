@@ -3,117 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoneySkillBot • Auto Complete Your Course</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>MoneySkillBot • AI Powered Course Automation</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-</head>
-<body class="bg-gray-950 text-white min-h-screen">
-  <div class="max-w-4xl mx-auto p-8">
-
-    <div class="text-center mb-8">
-      <h1 class="text-5xl font-bold text-green-400">MoneySkillBot</h1>
-      <p class="text-xl mt-2">Made by a student</p>
-    </div>
-
-    <div class="bg-red-600 p-6 rounded-2xl mb-8 text-center">
-      <p class="text-xl">DOES NOT WORK ON SCHOOL ISSUED CHROMEBOOK<br>WILL WORK IN BACKGROUND — IS NOT INSTANT</p>
-    </div>
-
-    <div class="bg-green-600 p-8 rounded-3xl mb-10 text-center">
-      <h2 class="text-4xl font-bold">$10 via Cash App $cacabazuzu</h2>
-      <p class="mt-4">Include your MoneySkill username in the note</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-8">
-      <div>
-        <h3 class="text-2xl font-semibold mb-6">How to use:</h3>
-        <ol class="space-y-4 text-lg">
-          <li>1. Pay $10 to $cacabazuzu</li>
-          <li>2. Fill the form below</li>
-          <li>3. Download both files</li>
-        </ol>
-      </div>
-
-      <div class="bg-gray-900 p-8 rounded-3xl">
-        <div class="space-y-6">
-          <div>
-            <label class="block mb-2">MoneySkill Username</label>
-            <input id="username" type="text" placeholder="s1234567" class="w-full p-4 bg-gray-800 rounded-xl border border-gray-700 focus:border-green-500 outline-none">
-          </div>
-          <div>
-            <label class="block mb-2">MoneySkill Password</label>
-            <input id="password" type="password" class="w-full p-4 bg-gray-800 rounded-xl border border-gray-700 focus:border-green-500 outline-none">
-          </div>
-          <div>
-            <label class="block mb-2">Cash App Payment Proof</label>
-            <input id="proof" type="text" class="w-full p-4 bg-gray-800 rounded-xl border border-gray-700 focus:border-green-500 outline-none">
-          </div>
-
-          <button onclick="generateConfig()" 
-                  class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl text-xl font-bold">
-            Download Personalized Config + Instructions
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-12 text-center">
-      <button onclick="downloadExe()" 
-              class="bg-blue-600 hover:bg-blue-500 px-10 py-5 rounded-2xl text-xl font-bold inline-flex items-center gap-3">
-        <i class="fas fa-download"></i> Download MoneySkillBot.exe
-      </button>
-    </div>
-
-    <div class="mt-16 bg-gray-900 p-8 rounded-3xl">
-      <h3 class="text-2xl font-bold mb-6">After downloading both files:</h3>
-      <ol class="list-decimal list-inside space-y-6 text-lg">
-        <li>Create a folder on your desktop called <span class="font-mono bg-gray-800 px-2 py-1 rounded">MoneySkillBot</span></li>
-        <li>Put both files (MoneySkillBot.exe and config.lic) in that folder</li>
-        <li>Double-click <span class="font-mono bg-gray-800 px-2 py-1 rounded">MoneySkillBot.exe</span> to start</li>
-        <li>To stop: Close the browser window, or use Task Manager (Ctrl+Shift+Esc) → End Task on MoneySkillBot.exe</li>
-      </ol>
-    </div>
-
-  </div>
-
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    function downloadExe() {
-      window.open("https://github.com/MoneySkillKiller/moneyskill-activator/releases/download/v1.0/MoneySkillBot.exe", "_blank");
-    }
-
-    function generateConfig() {
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const proof = document.getElementById("proof").value.trim();
-
-      if (!username || !password || !proof) {
-        alert("Please fill in Username, Password, and Payment Proof");
-        return;
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            dark: {
+              900: '#0b0f19',
+              800: '#111827',
+              700: '#1f2937',
+            }
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
       }
-
-      // Show exactly what will be saved
-      if (!confirm(`Creating config for:\n\nUsername: ${username}\nPassword: ${password}\n\nClick OK to download`)) {
-        return;
-      }
-
-      const config = {
-        username: username,
-        password: password,
-        deepseek_key: "sk-9c74f97a7ed84ba5a0c08774c15bfab6"
-      };
-
-      const zip = new JSZip();
-      zip.file("config.lic", JSON.stringify(config, null, 2));
-      zip.file("README.txt", "To stop the bot:\n- Close the browser window\n- Or use Task Manager (Ctrl+Shift+Esc) → End Task on MoneySkillBot.exe");
-
-      zip.generateAsync({type:"blob"}).then(content => {
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(content);
-        link.download = "My_MoneySkillBot_Config.zip";
-        link.click();
-      });
     }
   </script>
+
+  <style>
+    body { background-color: #0b0f19; color: #fff; overflow-x: hidden; }
+    .glass {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative font-sans">
+  
+  <!-- Background Decorations -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-500 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob"></div>
+    <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-[-20%] left-[20%] w-[500px] h-[500px] bg-purple-500 rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-blob animation-delay-4000"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative z-10 p-6 glass sticky top-0 border-b border-white/5">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-400 to-indigo-600 flex items-center justify-center text-xl shadow-lg shadow-brand-500/20">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tight">MoneySkill<span class="text-brand-400">Bot</span></span>
+      </div>
+      <a href="#buy" class="hidden sm:inline-flex px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all font-medium border border-white/10 hover:border-white/20">Get Access</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4 py-20 max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-brand-400 mb-8 animate-fade-in">
+      <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-500"></span>
+      </span>
+      Version 2.0 Now Available
+    </div>
+
+    <h1 class="text-5xl md:text-7xl font-display font-extrabold tracking-tight mb-6 leading-tight">
+      Automate Your Course<br>
+      With <span class="text-gradient">Agentic AI</span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 font-light">
+      Stop wasting hours on repetitive quizzes. Our smart AI agent logs in, reads the content, and completes your MoneySkill course with a 70-95% success rate in the background.
+    </p>
+
+    <!-- Buy Card -->
+    <div id="buy" class="w-full max-w-md glass rounded-3xl p-1 relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-500/20 group">
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div class="bg-dark-900/80 rounded-[22px] p-8 relative z-10">
+        <div class="flex justify-between items-end mb-6">
+          <div class="text-left">
+            <h3 class="text-2xl font-display font-bold">Lifetime Access</h3>
+            <p class="text-gray-400 text-sm mt-1">One time payment</p>
+          </div>
+          <div class="text-4xl font-display font-bold">$10<span class="text-lg text-gray-500 font-normal">.00</span></div>
+        </div>
+
+        <ul class="space-y-4 mb-8 text-left">
+          <li class="flex items-center gap-3 text-gray-300">
+            <i class="fa-solid fa-check text-green-400"></i> Intelligent AI automation
+          </li>
+          <li class="flex items-center gap-3 text-gray-300">
+            <i class="fa-solid fa-check text-green-400"></i> Works silently in the background
+          </li>
+          <li class="flex items-center gap-3 text-gray-300">
+            <i class="fa-solid fa-check text-green-400"></i> Auto-retakes failed quizzes
+          </li>
+          <li class="flex items-center gap-3 text-gray-400 opacity-60">
+            <i class="fa-solid fa-xmark text-red-400"></i> Does NOT work on school Chromebooks
+          </li>
+        </ul>
+
+        <!-- CashApp Payment Button -->
+        <a href="https://cash.app/$cacabazuzu" target="_blank" class="block w-full py-4 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 font-bold text-lg text-center shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all hover:scale-[1.02] active:scale-[0.98]">
+          Pay $10 via Cash App <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+        </a>
+        <p class="text-xs text-gray-500 text-center mt-4">
+          <i class="fa-solid fa-clock text-green-400"></i> After paying, please message me your email/discord so I can send you the private download link!
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="relative z-10 border-t border-white/5 py-8 mt-12 text-center text-gray-500 text-sm glass">
+    <p>MoneySkillBot &copy; 2026. Made by a student.</p>
+  </footer>
+
 </body>
 </html>
